@@ -15,19 +15,29 @@ export default function RootLayout({
     <html lang="en">
       <AppContainer>
         <HeaderContainer>
-          <h1 className="text-5xl text-center">New App</h1>
+          <h1 className="text-center">New App</h1>
         </HeaderContainer>
         <MainContainer>
           <SideMenuContainer />
-          <main>{children}</main>
+          <PageContainer>{children}</PageContainer>
         </MainContainer>
       </AppContainer>
     </html>
   );
 }
 
-function AppContainer({ children }: { children: React.ReactNode }) {
-  return <body className="min-h-dvh flex flex-col">{children}</body>;
+const tailwindAppClasses = "min-h-dvh flex flex-col";
+
+function AppContainer({
+  className = "", //for additional classes
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <body className={`${tailwindAppClasses} ${className}`}>{children}</body>
+  );
 }
 
 const tailwindHeaderClasses = "h-30 border-b place-content-around";
@@ -36,7 +46,7 @@ function HeaderContainer({
   className = "", //for additional classes
   children,
 }: {
-  className: string;
+  className?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -52,7 +62,7 @@ function MainContainer({
   className = "", //for additional classes
   children,
 }: {
-  className: string;
+  className?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -60,9 +70,15 @@ function MainContainer({
   );
 }
 
-function SideMenuContainer() {
+const tailwindSideMenuClasses = "border-r w-40";
+
+function SideMenuContainer({
+  className = "", //for additional classes
+}: {
+  className?: string;
+}) {
   return (
-    <nav className="border-r w-40">
+    <nav className={`${tailwindSideMenuClasses} ${className}`}>
       <ul>
         <MenuItem text="Home" />
         <MenuItem text="Tasks" />
@@ -71,14 +87,29 @@ function SideMenuContainer() {
   );
 }
 
-const tailwindMenuItemClasses = "text-center p-3 border-b";
+const tailwindMenuItemClasses =
+  "text-center p-3 border-b cursor-pointer hover:underline decoration-indigo-500";
 
 function MenuItem({
   className = "", //for additional classes
   text,
 }: {
-  className: string;
+  className?: string;
   text: string;
 }) {
   return <li className={`${tailwindMenuItemClasses} ${className}`}>{text}</li>;
+}
+
+const tailwindPageClasses = "grow m-10";
+
+function PageContainer({
+  className = "", //for additional classes
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <main className={`${tailwindPageClasses} ${className}`}>{children}</main>
+  );
 }
