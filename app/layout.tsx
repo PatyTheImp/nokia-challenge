@@ -14,19 +14,33 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <Menu />
+        <HeaderContainer>
+          <h1 style={{ fontSize: "3rem", textAlign: "center" }}>New App</h1>
+        </HeaderContainer>
+        <SideMenuContainer />
         <main>{children}</main>
       </body>
     </html>
   );
 }
 
-function Header() {
-  return <header>New App</header>;
+const tailwindHeaderClasses = "h-30 border-b place-content-around";
+
+function HeaderContainer({
+  className = "", //for additional classes
+  children,
+}: {
+  className: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <header className={`${tailwindHeaderClasses} ${className}`}>
+      {children}
+    </header>
+  );
 }
 
-function Menu() {
+function SideMenuContainer() {
   return (
     <nav>
       <ul>
