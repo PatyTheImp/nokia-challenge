@@ -13,15 +13,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <AppContainer>
         <HeaderContainer>
-          <h1 style={{ fontSize: "3rem", textAlign: "center" }}>New App</h1>
+          <h1 className="text-5xl text-center">New App</h1>
         </HeaderContainer>
-        <SideMenuContainer />
-        <main>{children}</main>
-      </body>
+        <MainContainer>
+          <SideMenuContainer />
+          <main>{children}</main>
+        </MainContainer>
+      </AppContainer>
     </html>
   );
+}
+
+function AppContainer({ children }: { children: React.ReactNode }) {
+  return <body className="min-h-dvh flex flex-col">{children}</body>;
 }
 
 const tailwindHeaderClasses = "h-30 border-b place-content-around";
@@ -40,13 +46,39 @@ function HeaderContainer({
   );
 }
 
+const tailwindMainClasses = "grow columns-2 flex";
+
+function MainContainer({
+  className = "", //for additional classes
+  children,
+}: {
+  className: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className={`${tailwindMainClasses} ${className}`}>{children}</div>
+  );
+}
+
 function SideMenuContainer() {
   return (
-    <nav>
+    <nav className="border-r w-40">
       <ul>
-        <li>Home</li>
-        <li>Tasks</li>
+        <MenuItem text="Home" />
+        <MenuItem text="Tasks" />
       </ul>
     </nav>
   );
+}
+
+const tailwindMenuItemClasses = "text-center p-3 border-b";
+
+function MenuItem({
+  className = "", //for additional classes
+  text,
+}: {
+  className: string;
+  text: string;
+}) {
+  return <li className={`${tailwindMenuItemClasses} ${className}`}>{text}</li>;
 }
