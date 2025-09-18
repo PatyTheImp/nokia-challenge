@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import MenuItem from "./components/MenuItem";
 
 export const metadata: Metadata = {
   title: "Task List App",
@@ -13,22 +14,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <AppContainer>
-        <HeaderContainer>
+      <App>
+        <Header>
           <h1 className="text-center">New App</h1>
-        </HeaderContainer>
-        <MainContainer>
-          <SideMenuContainer />
-          <PageContainer>{children}</PageContainer>
-        </MainContainer>
-      </AppContainer>
+        </Header>
+        <Main>
+          <SideMenu />
+          <Page>{children}</Page>
+        </Main>
+      </App>
     </html>
   );
 }
 
 const tailwindAppClasses = "min-h-dvh flex flex-col";
 
-function AppContainer({
+function App({
   className = "", //for additional classes
   children,
 }: {
@@ -42,7 +43,7 @@ function AppContainer({
 
 const tailwindHeaderClasses = "h-30 border-b place-content-around";
 
-function HeaderContainer({
+function Header({
   className = "", //for additional classes
   children,
 }: {
@@ -58,7 +59,7 @@ function HeaderContainer({
 
 const tailwindMainClasses = "grow columns-2 flex";
 
-function MainContainer({
+function Main({
   className = "", //for additional classes
   children,
 }: {
@@ -72,7 +73,7 @@ function MainContainer({
 
 const tailwindSideMenuClasses = "border-r w-40";
 
-function SideMenuContainer({
+function SideMenu({
   className = "", //for additional classes
 }: {
   className?: string;
@@ -80,29 +81,16 @@ function SideMenuContainer({
   return (
     <nav className={`${tailwindSideMenuClasses} ${className}`}>
       <ul>
-        <MenuItem text="Home" />
-        <MenuItem text="Tasks" />
+        <MenuItem text="Home" href="/" />
+        <MenuItem text="Tasks" href="/tasks" />
       </ul>
     </nav>
   );
 }
 
-const tailwindMenuItemClasses =
-  "text-center p-3 border-b cursor-pointer hover:underline decoration-indigo-500";
-
-function MenuItem({
-  className = "", //for additional classes
-  text,
-}: {
-  className?: string;
-  text: string;
-}) {
-  return <li className={`${tailwindMenuItemClasses} ${className}`}>{text}</li>;
-}
-
 const tailwindPageClasses = "grow m-10";
 
-function PageContainer({
+function Page({
   className = "", //for additional classes
   children,
 }: {
