@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: "An application for visualizing tasks.",
 };
 
+// this is the common layout between pages
+// a page is rendered as the children of this component
 export default function RootLayout({
   children,
 }: Readonly<{
