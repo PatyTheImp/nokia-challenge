@@ -9,5 +9,6 @@ export default defineConfig({
     setupFiles: ["./__tests__/setup.ts"],
     globals: true,
     css: true,
+    exclude: ["e2e/**/*", "node_modules/**"], // so it doesn't run playwright tests
   },
 });

@@ -1,11 +1,12 @@
 import { test, expect } from "@playwright/test";
 
 test("renders list when API succeeds", async ({ page }) => {
-  await page.route("http://localhost:3008/api/tasks/", (route) =>
-    route.fulfill()
-  );
-
   await page.goto("http://localhost:3000/tasks");
+
+  // not supose to see an alert
+  await expect(
+    page.getByRole("alert").filter({ hasText: "Request failed:" })
+  ).not.toBeVisible();
 
   await expect(page.getByRole("heading", { name: "Tasks:" })).toBeVisible();
 
