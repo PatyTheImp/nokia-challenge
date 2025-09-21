@@ -31,7 +31,7 @@ A small Tasks app built with **Next.js (App Router) + TypeScript + Tailwind CSS*
 
 3.  **Build & run the app**
     ```bash
-    # from the app directory
+    # from the nokia-challenge directory
     npm run build
     npm run start
     ```
