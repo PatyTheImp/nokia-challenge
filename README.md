@@ -20,7 +20,7 @@ A small Tasks app built with **Next.js (App Router) + TypeScript + Tailwind CSS*
 
 ## Getting started
 
-1.  Clone this repo then run `npm install` inside the app dir
+1.  Clone this repo then run `npm install` inside the *nokia-challenge* dir
 
 2.  **Start the Mock API (required):**
 
