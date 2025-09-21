@@ -42,6 +42,7 @@ A small Tasks app built with **Next.js (App Router) + TypeScript + Tailwind CSS*
 ### Unit tests
 
 ```bash
+# from the nokia-challenge directory
 npm run test
 ```
 
@@ -50,12 +51,14 @@ npm run test
 First install Playwright browsers:
 
 ```bash
+# from the nokia-challenge directory
 npx playwright install
 ```
 
 Then, with **the app running** (`npm run start`) and **the mock API running**, execute:
 
 ```bash
+# from the nokia-challenge directory
 npx playwright test
 ```
 
